@@ -115,11 +115,12 @@
 
         .hero-layout {
             display: grid;
-            grid-template-columns: 1fr 400px;
+            grid-template-columns: 1fr 450px;
             gap: 80px;
             align-items: center;
             position: relative;
             z-index: 1;
+            margin-bottom: 60px;
         }
         
         .hero-text {
@@ -128,16 +129,19 @@
         
         .hero-image-container {
             position: relative;
+            z-index: 2;
         }
         
         .hero-main-image {
             width: 100%;
-            height: 500px;
+            height: 550px;
             object-fit: cover;
+            object-position: center top;
             border-radius: 25px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.4);
             border: 8px solid white;
             transition: transform 0.3s ease;
+            display: block;
         }
         
         .hero-main-image:hover {
@@ -709,9 +713,10 @@
                         </div>
                         
                         <div class="hero-image-container">
-                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=500&h=600&fit=crop&crop=face" 
-                                 alt="דר' רונית לוי" 
-                                 class="hero-main-image" />
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=450&h=550&fit=crop&crop=face&auto=format&q=80" 
+                                 alt="דר' רונית לוי - מורה פרטית לבגרויות" 
+                                 class="hero-main-image" 
+                                 loading="eager" />
                         </div>
                     </div>
                 </div>
@@ -757,7 +762,9 @@
                 
                 <div class="about-hero">
                     <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=500&fit=crop&crop=face" alt="דר' רונית לוי" />
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=350&h=450&fit=crop&crop=face&auto=format&q=80" 
+                             alt="דר' רונית לוי - מורה פרטית לבגרויות מקצועית" 
+                             loading="lazy" />
                     </div>
                     <div class="about-content">
                         <h2>המורה שלכם להצלחה בבגרויות</h2>
@@ -1200,6 +1207,23 @@
             const firstFilterBtn = document.querySelector('.filter-btn');
             if (firstFilterBtn) {
                 firstFilterBtn.classList.add('active');
+            }
+            
+            // Ensure images load properly
+            const heroImage = document.querySelector('.hero-main-image');
+            const aboutImage = document.querySelector('.about-image img');
+            
+            // Add error handling for images
+            if (heroImage) {
+                heroImage.onerror = function() {
+                    this.src = 'https://via.placeholder.com/450x550/4a5568/ffffff?text=רונית+לוי';
+                };
+            }
+            
+            if (aboutImage) {
+                aboutImage.onerror = function() {
+                    this.src = 'https://via.placeholder.com/350x450/4a5568/ffffff?text=רונית+לוי';
+                };
             }
         });
     </script>
